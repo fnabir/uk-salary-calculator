@@ -8,13 +8,13 @@ export const config2026_27: TaxYearConfig = {
   incomeTax: {
     uk: [
       { label: "Basic Rate", rate: 0.2, from: 0, to: 37700 },
-      { label: "Higher Rate", rate: 0.4, from: 37700, to: 112570 },
-      { label: "Additional Rate", rate: 0.45, from: 112570, to: null },
+      { label: "Higher Rate", rate: 0.4, from: 37700, to: 125140 },
+      { label: "Additional Rate", rate: 0.45, from: 125140, to: null },
     ],
     scotland: [
-      { label: "Starter Rate", rate: 0.19, from: 0, to: 2827 },
-      { label: "Basic Rate", rate: 0.2, from: 2827, to: 14921 },
-      { label: "Intermediate Rate", rate: 0.21, from: 14921, to: 31092 },
+      { label: "Starter Rate", rate: 0.19, from: 0, to: 3967 },
+      { label: "Basic Rate", rate: 0.2, from: 3967, to: 16956 },
+      { label: "Intermediate Rate", rate: 0.21, from: 16956, to: 31092 },
       { label: "Higher Rate", rate: 0.42, from: 31092, to: 62430 },
       { label: "Advanced Rate", rate: 0.45, from: 62430, to: 112570 },
       { label: "Top Rate", rate: 0.48, from: 112570, to: null },
