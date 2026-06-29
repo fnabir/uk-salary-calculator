@@ -64,7 +64,7 @@ function RateInput({
                 aria-label={`About ${label}`}
                 className="text-muted-foreground hover:text-foreground transition-colors"
               >
-                <Info className="h-3.5 w-3.5" />
+                <Info className="size-4" />
               </button>
             </TooltipTrigger>
             <TooltipContent side="right" className="max-w-xs p-3">
@@ -74,7 +74,7 @@ function RateInput({
         </TooltipProvider>
       </div>
 
-      <div className="relative">
+      <div className="relative p-0.75">
         <Input
           id={id}
           type="text"
@@ -83,6 +83,7 @@ function RateInput({
           value={value === 0 ? "" : value}
           onChange={handleChange}
           className="pr-7"
+          autoComplete="off"
         />
         <span className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground text-sm select-none">
           %
@@ -179,22 +180,33 @@ export function PensionInputs({
             </div>
 
             {/* Rate inputs */}
-            <div className="grid grid-cols-2 gap-3">
-              <RateInput
-                id="employee-rate"
-                label="Your contribution"
-                value={employeeRate}
-                onChange={onEmployeeRateChange}
-                tooltip="Your personal contribution as a percentage of qualifying earnings. Auto-enrolment minimum is 5%."
-              />
-              <RateInput
-                id="employer-rate"
-                label="Employer contribution"
-                value={employerRate}
-                onChange={onEmployerRateChange}
-                tooltip="Your employer's contribution as a percentage of qualifying earnings. Auto-enrolment minimum is 3%."
-              />
-            </div>
+            <AnimatePresence>
+              {type === "salary_sacrifice" && (
+                <motion.div
+                  className="grid grid-cols-2 gap-3 overflow-hidden"
+                  variants={fadeIn}
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={{ opacity: 1, height: "auto" }}
+                  exit={{ opacity: 0, height: 0 }}
+                  transition={transitions.smooth}
+                >
+                  <RateInput
+                    id="employee-rate"
+                    label="Your contribution"
+                    value={employeeRate}
+                    onChange={onEmployeeRateChange}
+                    tooltip="Your personal contribution as a percentage of qualifying earnings. Auto-enrolment minimum is 5%."
+                  />
+                  <RateInput
+                    id="employer-rate"
+                    label="Employer contribution"
+                    value={employerRate}
+                    onChange={onEmployerRateChange}
+                    tooltip="Your employer's contribution as a percentage of qualifying earnings. Auto-enrolment minimum is 3%."
+                  />
+                </motion.div>
+              )}
+            </AnimatePresence>
           </motion.div>
         )}
       </AnimatePresence>
