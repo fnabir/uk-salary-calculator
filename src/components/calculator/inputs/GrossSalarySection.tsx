@@ -140,7 +140,7 @@ function BonusBenefit({
                   aria-label={`About ${label}`}
                   className="text-muted-foreground hover:text-foreground transition-colors"
                 >
-                  <Info className="h-3.5 w-3.5" />
+                  <Info className="size-4" />
                 </button>
               </TooltipTrigger>
               <TooltipContent side="right" className="max-w-xs p-3">
@@ -244,17 +244,23 @@ export function GrossSalarySection({
         </div>
 
         {/* Annual gross preview */}
-        {salary.amount > 0 &&
-          (salary.period !== "annual" || showAdditional) && (
-            <motion.p
-              className="text-xs text-muted-foreground"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={transitions.snappy}
-            >
-              {formatCurrency(salary.amount)} annual gross
-            </motion.p>
-          )}
+        {salary.amount > 0 && salary.period !== "annual" && (
+          <motion.p
+            className="text-xs text-muted-foreground"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={transitions.snappy}
+          >
+            {formatCurrency(
+              salary.period === "monthly"
+                ? salary.amount * 12
+                : salary.period === "weekly"
+                  ? salary.amount * 52
+                  : salary.amount,
+            )}{" "}
+            per year
+          </motion.p>
+        )}
       </div>
 
       {/* Additional toggle */}
