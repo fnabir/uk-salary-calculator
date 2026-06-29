@@ -8,6 +8,8 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://uksalarycalculator.vercel.app"),
+
   title: "UK Salary Calculator",
 
   description:
@@ -40,9 +42,14 @@ export const metadata: Metadata = {
     },
   },
 
+  alternates: {
+    canonical: "https://uksalarycalculator.vercel.app",
+  },
+
   openGraph: {
     type: "website",
     locale: "en_GB",
+    url: "https://uksalarycalculator.vercel.app",
     siteName: "UK Salary Calculator",
     title: "UK Salary Calculator — Take-Home Pay After Tax",
     description:
