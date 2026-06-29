@@ -71,7 +71,7 @@ const DEFAULT_STATE: CalculatorState = {
   pension: {
     employeeRate: 0,
     employerRate: 0,
-    type: "relief_at_source",
+    type: "salary_sacrifice",
   },
   studentLoanPlans: ["none"],
 };
