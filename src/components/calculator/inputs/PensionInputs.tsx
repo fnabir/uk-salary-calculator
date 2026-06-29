@@ -121,29 +121,7 @@ export function PensionInputs({
     >
       {/* Header with checkbox */}
       <div className="flex items-center justify-between">
-        <div className="flex items-center gap-1.5">
-          <Label className="text-base font-medium">Pension</Label>
-          <TooltipProvider>
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <button
-                  type="button"
-                  aria-label="About pension contributions"
-                  className="text-muted-foreground hover:text-foreground transition-colors duration-200"
-                >
-                  <Info className="size-4.5" />
-                </button>
-              </TooltipTrigger>
-              <TooltipContent side="right" className="max-w-xs p-3">
-                <p className="text-xs">
-                  Contributions are calculated on qualifying earnings between
-                  £6,240 and £50,270. The minimum is 5% employee and 3% employer
-                  under auto-enrolment rules.
-                </p>
-              </TooltipContent>
-            </Tooltip>
-          </TooltipProvider>
-        </div>
+        <Label className="text-base font-medium">Pension</Label>
 
         <div className="flex items-center gap-2">
           <Label htmlFor="pension-enabled" className="text-sm cursor-pointer">
@@ -168,7 +146,7 @@ export function PensionInputs({
             transition={transitions.smooth}
           >
             {/* Pension type toggle */}
-            <div className="flex flex-col gap-2">
+            <div className="flex flex-col gap-1">
               <div className="w-full flex items-center justify-between gap-2">
                 <Label className="text-sm">Contribution type</Label>
                 <ToggleGroup
