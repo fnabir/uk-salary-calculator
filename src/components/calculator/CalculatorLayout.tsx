@@ -44,7 +44,7 @@ export function CalculatorLayout() {
           <motion.div
             variants={fadeInUp}
             transition={transitions.smooth}
-            className="rounded-xl border border-border bg-card px-4 lg:px-6 py-6 shadow-sm flex flex-col gap-4"
+            className="rounded-xl border border-border bg-card px-4 lg:px-6 py-6 shadow-lg flex flex-col gap-4"
           >
             <GrossSalarySection
               salary={state.salary}
@@ -95,7 +95,7 @@ export function CalculatorLayout() {
           <motion.div
             variants={fadeInUp}
             transition={transitions.smooth}
-            className="rounded-xl border border-border bg-card p-6 shadow-sm"
+            className="rounded-xl border border-border bg-card p-6 shadow-lg"
           >
             {result ? (
               <ResultsPanel result={result} />

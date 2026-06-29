@@ -160,6 +160,10 @@ export function BreakdownSection({ result, period }: BreakdownSectionProps) {
         label="Non-Taxable Benefits"
         value={result.nonTaxableBenefits[period]}
       />
+      <BreakdownRow
+        label="Taxable Income"
+        value={result.incomeTax[period].taxableIncome}
+      />
 
       <Separator />
 

@@ -9,7 +9,7 @@ import {
 
 export function Footer() {
   return (
-    <footer className="bg-card w-full mx-auto border-t border-border px-4 py-3 flex items-center justify-between">
+    <footer className="bg-card w-full mx-auto border-t border-border px-4 py-3 flex items-center justify-between shadow-lg">
       <motion.div
         variants={fadeInUp}
         initial="initial"
