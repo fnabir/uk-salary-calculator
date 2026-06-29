@@ -24,7 +24,7 @@ export function PeriodToggle({ value, onChange }: PeriodToggleProps) {
         type="single"
         value={value}
         onValueChange={(v) => v && onChange(v as Period)}
-        className="justify-start"
+        className="w-full justify-center lg:justify-start"
       >
         {PERIODS.map((period) => (
           <ToggleGroupItem
