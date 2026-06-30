@@ -4,8 +4,8 @@ A fast, accurate, and beautifully animated UK take-home pay calculator built wit
 
 ![UK Salary Calculator](https://img.shields.io/badge/Tax%20Year-2026%2F27-blue)
 ![Next.js](https://img.shields.io/badge/Next.js-16-black)
-![TypeScript](https://img.shields.io/badge/TypeScript-5-blue)
-![License](https://img.shields.io/badge/license-MIT-green)
+![TypeScript](https://img.shields.io/badge/TypeScript-5-blueviolet)
+[![License](https://img.shields.io/badge/License-Proprietary-crimson)](LICENSE)
 
 ---
 
@@ -102,19 +102,19 @@ All calculation logic lives in pure TypeScript functions in `src/lib/tax/` — c
 | Band            | Rate | Taxable Income     |
 | --------------- | ---- | ------------------ |
 | Basic Rate      | 20%  | £0 – £37,700       |
-| Higher Rate     | 40%  | £37,701 – £112,570 |
-| Additional Rate | 45%  | Over £112,570      |
+| Higher Rate     | 40%  | £37,701 – £125,140 |
+| Additional Rate | 45%  | Over £125,140      |
 
 **Scotland**
 
 | Band              | Rate | Taxable Income     |
 | ----------------- | ---- | ------------------ |
-| Starter Rate      | 19%  | £0 – £2,827        |
-| Basic Rate        | 20%  | £2,828 – £14,921   |
-| Intermediate Rate | 21%  | £14,922 – £31,092  |
+| Starter Rate      | 19%  | £0 – £3,967        |
+| Basic Rate        | 20%  | £3,968 – £16,956   |
+| Intermediate Rate | 21%  | £16,956 – £31,092  |
 | Higher Rate       | 42%  | £31,093 – £62,430  |
-| Advanced Rate     | 45%  | £62,431 – £112,570 |
-| Top Rate          | 48%  | Over £112,570      |
+| Advanced Rate     | 45%  | £62,431 – £125,140 |
+| Top Rate          | 48%  | Over £125,140      |
 
 Personal Allowance is £12,570, tapering by £1 for every £2 earned over £100,000 and disappearing entirely at £125,140.
 
