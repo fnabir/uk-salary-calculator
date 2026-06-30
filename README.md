@@ -202,4 +202,4 @@ This calculator is provided for informational purposes only. Results are estimat
 
 ## License
 
-This project is licensed under a proprietary license. Please refer to the [LICENSE](./LICENSE) file for full terms.
+This project is licensed under a proprietary license. Please refer to the [LICENSE](./LICENSE.md) file for full terms.
