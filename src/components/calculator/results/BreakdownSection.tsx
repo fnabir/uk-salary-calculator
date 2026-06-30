@@ -230,12 +230,12 @@ export function BreakdownSection({ result, period }: BreakdownSectionProps) {
             <CollapsibleBlock
               title="Pension"
               total={result.pension.employeeContribution[period]}
-              totalClassName="text-amber-500"
+              totalClassName="text-amber-600 dark:text-amber-400"
             >
               <BreakdownRow
                 label="Your contribution"
                 value={result.pension.employeeContribution[period]}
-                valueClassName="text-amber-500"
+                valueClassName="text-amber-600 dark:text-amber-400"
               />
               <BreakdownRow
                 label="Employer contribution"
