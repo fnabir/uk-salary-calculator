@@ -5,7 +5,7 @@ A fast, accurate, and beautifully animated UK take-home pay calculator built wit
 ![UK Salary Calculator](https://img.shields.io/badge/Tax%20Year-2026%2F27-blue)
 ![Next.js](https://img.shields.io/badge/Next.js-16-black)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5-blueviolet)
-[![License](https://img.shields.io/badge/License-Proprietary-crimson)](LICENSE)
+[![License](https://img.shields.io/badge/License-Proprietary-crimson)](LICENSE.md)
 
 ---
 
