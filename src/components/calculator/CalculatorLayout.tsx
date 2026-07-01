@@ -12,6 +12,8 @@ import { ResultsPanel } from "./results/ResultsPanel";
 import { GrossSalarySection } from "./inputs/GrossSalarySection";
 import { Header } from "../ui/Header";
 import { Footer } from "../ui/Footer";
+import { Disclaimer } from "../ui/Disclaimer";
+import { TAX_CONFIGS } from "@/lib/tax";
 
 export function CalculatorLayout() {
   const {
@@ -32,6 +34,7 @@ export function CalculatorLayout() {
   return (
     <div className="min-h-screen flex flex-col bg-background text-foreground">
       <Header />
+      <Disclaimer />
 
       <main className="container flex-1 mx-auto max-w-6xl px-4 py-6 flex flex-col gap-6 lg:flex-row lg:gap-8 lg:items-start">
         {/* Inputs panel */}
@@ -81,6 +84,7 @@ export function CalculatorLayout() {
             <StudentLoanSelect
               selected={state.studentLoanPlans}
               onChange={setStudentLoanPlans}
+              plans={TAX_CONFIGS[state.taxYear].studentLoan}
             />
           </motion.div>
         </motion.section>
