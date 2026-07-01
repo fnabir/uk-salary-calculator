@@ -4,13 +4,8 @@ import { motion } from "framer-motion";
 import { fadeInUp, transitions } from "@/lib/animations";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
 import { Info } from "lucide-react";
+import { InfoTooltip } from "@/components/ui/InfoTooltip";
 
 interface TaxCodeInputProps {
   value: string;
@@ -42,22 +37,9 @@ export function TaxCodeInput({ value, onChange }: TaxCodeInputProps) {
     >
       <div className="flex items-center gap-1.5">
         <Label htmlFor="tax-code">Tax Code</Label>
-
-        <TooltipProvider>
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <button
-                type="button"
-                aria-label="What is a tax code?"
-                className="text-muted-foreground hover:text-foreground transition-colors duration-150"
-              >
-                <Info className="size-4" />
-              </button>
-            </TooltipTrigger>
-            <TooltipContent
-              side="right"
-              className="flex flex-col max-w-xs space-y-2 p-3"
-            >
+        <InfoTooltip
+          content={
+            <div className="flex flex-col space-y-2">
               <p className="text-xs font-medium">
                 Your tax code is on your payslip or P60. It tells HMRC how much
                 personal allowance you get.
@@ -75,9 +57,10 @@ export function TaxCodeInput({ value, onChange }: TaxCodeInputProps) {
                 <span className="font-mono font-medium">1257L</span> - this is
                 the standard code for most people.
               </p>
-            </TooltipContent>
-          </Tooltip>
-        </TooltipProvider>
+            </div>
+          }
+          side="right"
+        />
       </div>
 
       <Input

@@ -1,10 +1,9 @@
-// src/components/calculator/results/BreakdownSection.tsx
 "use client";
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { transitions } from "@/lib/animations";
-import { formatCurrency, round } from "@/lib/utils";
+import { formatCurrency } from "@/lib/utils";
 import { Separator } from "@/components/ui/separator";
 import { ChevronDown } from "lucide-react";
 import { useAnimatedNumber } from "@/hooks/useAnimatedNumber";

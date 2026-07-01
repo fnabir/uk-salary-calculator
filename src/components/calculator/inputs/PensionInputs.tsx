@@ -1,4 +1,3 @@
-// src/components/calculator/inputs/PensionInputs.tsx
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
@@ -6,16 +5,11 @@ import { fadeInUp, fadeIn, transitions } from "@/lib/animations";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import { Info } from "lucide-react";
 import type { PensionType } from "@/lib/tax/calculations/pension";
 import { useState } from "react";
+import { InfoTooltip } from "@/components/ui/InfoTooltip";
 
 interface PensionInputsProps {
   employeeRate: number;
@@ -56,22 +50,10 @@ function RateInput({
     <div className="flex flex-col gap-2">
       <div className="flex items-center gap-1.5">
         <Label htmlFor={id}>{label}</Label>
-        <TooltipProvider>
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <button
-                type="button"
-                aria-label={`About ${label}`}
-                className="text-muted-foreground hover:text-foreground transition-colors"
-              >
-                <Info className="size-4" />
-              </button>
-            </TooltipTrigger>
-            <TooltipContent side="right" className="max-w-xs p-3">
-              <p className="text-xs">{tooltip}</p>
-            </TooltipContent>
-          </Tooltip>
-        </TooltipProvider>
+        <InfoTooltip
+          content={<p className="text-xs">{tooltip}</p>}
+          side="right"
+        />
       </div>
 
       <div className="relative p-0.75">

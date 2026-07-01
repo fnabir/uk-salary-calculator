@@ -1,4 +1,3 @@
-// src/components/calculator/inputs/SalaryInput.tsx
 "use client";
 
 import { motion } from "framer-motion";

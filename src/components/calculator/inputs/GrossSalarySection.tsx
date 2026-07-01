@@ -13,13 +13,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
-import { Info } from "lucide-react";
 import { formatCurrency } from "@/lib/utils";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { SalaryInput, SalaryPeriod } from "@/lib/tax/calculations/salary";
@@ -28,6 +21,7 @@ import {
   BonusBenefitInput,
   BonusBenefitPeriod,
 } from "@/lib/tax/calculations/bonusBenefits";
+import { InfoTooltip } from "@/components/ui/InfoTooltip";
 
 interface GrossSalarySectionProps {
   salary: SalaryInput;
@@ -60,6 +54,87 @@ const BONUS_BENEFIT_FREQUENCIES: {
   { value: "regular", label: "Regular" },
   { value: "one-off", label: "One-off" },
 ];
+
+const TOOLTIP_CONTENT = {
+  bonus: {
+    "one-off": (
+      <div className="space-y-1.5">
+        <p className="font-medium">One-off Bonus</p>
+        <p>
+          A single bonus payment — e.g. annual performance bonus or signing
+          bonus. Added to your gross once and shown in the selected period.
+        </p>
+      </div>
+    ),
+    regular: (
+      <div className="space-y-1.5">
+        <p className="font-medium">Regular Bonus</p>
+        <p>
+          A recurring bonus paid every period — e.g. monthly commission or
+          weekly performance pay. Annualised and included in every period&apos;s
+          gross.
+        </p>
+      </div>
+    ),
+  },
+  taxableBenefits: {
+    "one-off": (
+      <div className="space-y-1.5">
+        <p className="font-medium">One-off Taxable Benefit</p>
+        <p>
+          A single taxable benefit in kind — e.g. a one-time company car
+          allowance or relocation package. Subject to Income Tax and added to
+          your gross once.
+        </p>
+        <p className="text-muted-foreground">
+          Examples: relocation allowance, public transport allowance, one-off
+          medical cover
+        </p>
+      </div>
+    ),
+    regular: (
+      <div className="space-y-1.5">
+        <p className="font-medium">Regular Taxable Benefit</p>
+        <p>
+          A recurring benefit in kind subject to Income Tax — added to your
+          gross every period before tax is calculated.
+        </p>
+        <p className="text-muted-foreground">
+          Examples: private health insurance, company car cash equivalent, gym
+          membership
+        </p>
+      </div>
+    ),
+  },
+  nonTaxableBenefits: {
+    "one-off": (
+      <div className="space-y-1.5">
+        <p className="font-medium">One-off Non-Taxable Benefit</p>
+        <p>
+          A single benefit exempt from tax — shown in your gross for reference
+          only and excluded from all tax calculations.
+        </p>
+        <p className="text-muted-foreground">
+          Examples: one-off cycle to work equipment, childcare payment
+        </p>
+      </div>
+    ),
+    regular: (
+      <div className="space-y-1.5">
+        <p className="font-medium">Regular Non-Taxable Benefit</p>
+        <p>
+          A recurring benefit exempt from tax — shown in your gross for
+          reference only and excluded from all tax and NI calculations.
+        </p>
+        <p className="text-muted-foreground">
+          Examples: cycle to work scheme, childcare vouchers, workplace parking
+        </p>
+      </div>
+    ),
+  },
+} as const;
+
+type TooltipField = keyof typeof TOOLTIP_CONTENT;
 
 // Reusable amount input
 function AmountInput({
@@ -115,13 +190,13 @@ function AmountInput({
 function BonusBenefit({
   id,
   label,
-  tooltip,
+  field,
   value,
   onChange,
 }: {
   id: string;
   label: string;
-  tooltip: string;
+  field: TooltipField;
   value: BonusBenefitInput;
   onChange: (value: BonusBenefitInput) => void;
 }) {
@@ -132,22 +207,10 @@ function BonusBenefit({
           <Label htmlFor={id} className="text-sm">
             {label}
           </Label>
-          <TooltipProvider>
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <button
-                  type="button"
-                  aria-label={`About ${label}`}
-                  className="text-muted-foreground hover:text-foreground transition-colors"
-                >
-                  <Info className="size-4" />
-                </button>
-              </TooltipTrigger>
-              <TooltipContent side="right" className="max-w-xs p-3">
-                <p className="text-xs">{tooltip}</p>
-              </TooltipContent>
-            </Tooltip>
-          </TooltipProvider>
+          <InfoTooltip
+            content={TOOLTIP_CONTENT[field][value.frequency]}
+            side="right"
+          />
         </div>
         <RadioGroup
           value={value.frequency}
@@ -295,7 +358,7 @@ export function GrossSalarySection({
             <BonusBenefit
               id="bonus"
               label="Bonus"
-              tooltip="A one-off bonus payment. Select the period it applies to — it will be added to your annual gross and shown correctly across all periods."
+              field="bonus"
               value={bonus}
               onChange={onBonusChange}
             />
@@ -304,7 +367,7 @@ export function GrossSalarySection({
             <BonusBenefit
               id="taxable-benefits"
               label="Taxable Benefits"
-              tooltip="Benefits in kind subject to Income Tax — e.g. private medical insurance, company car cash equivalent. Added to your gross before tax is calculated."
+              field="taxableBenefits"
               value={taxableBenefits}
               onChange={onTaxableBenefitsChange}
             />
@@ -313,7 +376,7 @@ export function GrossSalarySection({
             <BonusBenefit
               id="non-taxable-benefits"
               label="Non-Taxable Benefits"
-              tooltip="Benefits exempt from tax — e.g. cycle to work scheme, childcare vouchers. Shown for reference only and excluded from all tax calculations."
+              field="nonTaxableBenefits"
               value={nonTaxableBenefits}
               onChange={onNonTaxableBenefitsChange}
             />
