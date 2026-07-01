@@ -18,6 +18,8 @@ export interface StudentLoanPlan {
   plan: "plan1" | "plan2" | "plan4" | "plan5" | "postgrad";
   rate: number;
   threshold: { annual: number; monthly: number; weekly: number };
+  label: string;
+  description: string;
 }
 
 export interface TaxYearConfig {

@@ -44,26 +44,37 @@ export const config2026_27: TaxYearConfig = {
       plan: "plan1",
       rate: 0.09,
       threshold: { annual: 26900, monthly: 2241, weekly: 517 },
+      label: "Plan 1",
+      description:
+        "Started uni before September 2012 (England/Wales) or any time in Northern Ireland",
     },
     {
       plan: "plan2",
       rate: 0.09,
       threshold: { annual: 29385, monthly: 2448, weekly: 565 },
+      label: "Plan 2",
+      description: "Started uni from September 2012 (England/Wales)",
     },
     {
       plan: "plan4",
       rate: 0.09,
       threshold: { annual: 33795, monthly: 2816, weekly: 649 },
-    }, // Scotland only
+      label: "Plan 4",
+      description: "Studied in Scotland",
+    },
     {
       plan: "plan5",
       rate: 0.09,
       threshold: { annual: 25000, monthly: 2083, weekly: 480 },
+      label: "Plan 5",
+      description: "Started uni from August 2023 (England)",
     },
     {
       plan: "postgrad",
       rate: 0.06,
       threshold: { annual: 21000, monthly: 1750, weekly: 403 },
+      label: "Postgraduate",
+      description: "Postgraduate Master's or Doctoral loan",
     },
   ],
 
