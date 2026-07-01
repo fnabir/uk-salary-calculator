@@ -1,7 +1,6 @@
-// src/components/ui/InfoTooltip.tsx
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import {
   Tooltip,
   TooltipContent,
@@ -22,32 +21,14 @@ interface InfoTooltipProps {
   className?: string;
 }
 
-function useIsMobile() {
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const mq = window.matchMedia("(max-width: 767px)");
-    setIsMobile(mq.matches);
-    const handler = (e: MediaQueryListEvent) => setIsMobile(e.matches);
-    mq.addEventListener("change", handler);
-    return () => mq.removeEventListener("change", handler);
-  }, []);
-
-  return isMobile;
+function useIsTouch() {
+  if (typeof window === "undefined") return false;
+  return window.matchMedia("(hover: none)").matches;
 }
 
-function useIsTouch() {
-  const [isTouch, setIsTouch] = useState(false);
-
-  useEffect(() => {
-    const mq = window.matchMedia("(hover: none)");
-    setIsTouch(mq.matches);
-    const handler = (e: MediaQueryListEvent) => setIsTouch(e.matches);
-    mq.addEventListener("change", handler);
-    return () => mq.removeEventListener("change", handler);
-  }, []);
-
-  return isTouch;
+function useIsSmallScreen() {
+  if (typeof window === "undefined") return false;
+  return window.matchMedia("(max-width: 767px)").matches;
 }
 
 export function InfoTooltip({
@@ -57,9 +38,9 @@ export function InfoTooltip({
   button,
 }: InfoTooltipProps) {
   const isTouch = useIsTouch();
-  const isMobile = useIsMobile();
+  const isSmallScreen = useIsSmallScreen();
   const [open, setOpen] = useState(false);
-  const resolvedSide = isMobile ? "bottom" : side;
+  const resolvedSide = isTouch || isSmallScreen ? "bottom" : side;
 
   const trigger = button ?? (
     <button
@@ -81,7 +62,7 @@ export function InfoTooltip({
           alignOffset={-8}
           avoidCollisions
           sticky="partial"
-          collisionPadding={{ top: 12, bottom: 12, left: 16, right: 16 }}
+          collisionPadding={12}
           className={`w-[min(260px,calc(100vw-32px))] p-3 text-xs ${className}`}
           onOpenAutoFocus={(e) => e.preventDefault()}
         >
@@ -101,7 +82,7 @@ export function InfoTooltip({
           alignOffset={-8}
           avoidCollisions
           sticky="partial"
-          collisionPadding={{ top: 12, bottom: 12, left: 16, right: 16 }}
+          collisionPadding={12}
           className={`w-[min(280px,calc(100vw-48px))] p-3 ${className}`}
         >
           {content}
